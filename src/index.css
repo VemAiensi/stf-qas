@@ -1,0 +1,21 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* background-color: rgb(71, 82, 109); */
+  background-image: url("./assets/cropped.jpg");
+  background-color: rgba(41, 41, 41, 0.5);
+  background-blend-mode: overlay;
+  background-position: 0% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  z-index: 0;
+}
