@@ -1,0 +1,14 @@
+.login-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .login-box {
+    background-color: white;
+    width: 700px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+  }
+}

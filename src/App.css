@@ -38,6 +38,7 @@
 
 .wait-panel,
 .loading-panel,
+.survey-prompt,
 .card {
   grid-area: 1 / 1 / 2 / 2;
   width: 1000px;
@@ -51,6 +52,7 @@
   box-shadow: 0 0 20px #283134;
 }
 
+.survey-prompt,
 .wait-panel,
 .loading-panel {
   display: flex;
@@ -59,9 +61,16 @@
   align-items: center;
 }
 
+.survey-prompt,
 .loading-panel,
 .card {
   z-index: 2;
+}
+
+.survey-prompt {
+  img {
+    width: 300px;
+  }
 }
 
 .wait-panel {
@@ -219,12 +228,6 @@
       background-color: #136480;
       color: white;
     }
-  }
-
-  .show-config {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
   }
 }
 

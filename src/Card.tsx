@@ -1,4 +1,4 @@
-import photo from "./assets/photo_placeholder.jpg";
+// import photo from "./assets/photo_placeholder.jpg";
 import { useState, useRef, useEffect } from "react";
 
 type student = {
@@ -7,6 +7,7 @@ type student = {
   middleName: string;
   course: string;
   yearlvl: string;
+  picSrc: string;
 };
 
 type props = {
@@ -21,7 +22,7 @@ export default function Card({ student }: props) {
     // Set a timeout
     timeoutRef.current = setTimeout(() => {
       setDisplay(false);
-    }, 5000);
+    }, 10000);
 
     // Cleanup function: clear the timeout when the component unmounts
     // or when the dependencies of this useEffect change.
@@ -38,7 +39,7 @@ export default function Card({ student }: props) {
       <div className="course-bg"></div>
       <div className="profile-pic">
         <div className="img">
-          <img src={photo} alt="" />
+          <img src={student.picSrc} alt="" />
         </div>
       </div>
       <div className="field">
