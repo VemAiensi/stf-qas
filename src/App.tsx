@@ -78,6 +78,8 @@ function App({ accessToken, attendanceId }: props) {
         group: details.group,
         picSrc: details.picture,
       });
+    } else {
+      setStudent(null);
     }
 
     setLoading(false);
@@ -103,6 +105,29 @@ function App({ accessToken, attendanceId }: props) {
           )}
           <Wait />
         </div>
+
+        <form
+          onSubmit={async (e) => {
+            setManual(false);
+            e.preventDefault();
+            // alert(code);
+            await fetchDetails(code);
+            setCode("");
+          }}
+        >
+          <label htmlFor="code">ID:</label>
+          <input
+            ref={inputRef}
+            name="code"
+            autoFocus
+            type="text"
+            value={code}
+            onChange={(e) => {
+              setCode(e.target.value);
+            }}
+          />
+          <button type="submit">SUBMIT</button>
+        </form>
 
         {/* <button
           onClick={() => {
