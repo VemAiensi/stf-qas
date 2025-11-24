@@ -10,5 +10,75 @@
     height: 500px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 80px;
+    overflow: hidden;
+
+    button {
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      background-color: white;
+      padding: 10px 20px;
+      border: 1px solid rgb(95, 95, 95);
+      border-radius: 30px;
+      cursor: pointer;
+
+      img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+
+  .welcome-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  .credential-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 540px);
+    transform: translateX(25%);
+    transition: transform 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+      transition: opacity 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+      input {
+        width: 100%;
+        text-align: center;
+        padding: 5px;
+      }
+    }
+  }
+
+  .moved {
+    transform: translateX(-25%);
+  }
+
+  .transparent {
+    opacity: 0;
+    transition: opacity 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  .visible {
+    opacity: 1;
+    transition: opacity 1s cubic-bezier(0.075, 0.82, 0.165, 1);
   }
 }

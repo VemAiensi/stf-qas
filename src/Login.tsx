@@ -2,6 +2,7 @@ import { useGoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./login.css";
+import googleIcon from "./assets/googleIcon.png";
 
 type props = {
   setToken: React.Dispatch<React.SetStateAction<string>>;
@@ -38,16 +39,35 @@ export default function Login({ setToken, setAttendanceId }: props) {
   return (
     <div className="login-page">
       <div className="login-box">
-        Welcome to AEVM QAS
-        <button
-          onClick={() => {
-            login();
-          }}
+        <div className="welcome-text">
+          <img src="./NEU_Logo.png" alt="" />
+          {inputDisplay ? (
+            <p>Please insert Attendance Sheet Id</p>
+          ) : (
+            <p>Welcome to AEVM QAS</p>
+          )}
+        </div>
+
+        <div
+          className={inputDisplay ? "credential-grid moved" : "credential-grid"}
         >
-          Log in with Google
-        </button>
-        {inputDisplay && (
-          <div>
+          <div
+            className={inputDisplay ? "transparent" : "visible"}
+            // style={{ backgroundColor: "red" }}
+          >
+            <button
+              onClick={() => {
+                login();
+              }}
+            >
+              <img src={googleIcon} alt="" />
+              <span>Log in with Google</span>
+            </button>
+          </div>
+          <div
+            className={inputDisplay ? "visible" : "transparent"}
+            // style={{ backgroundColor: "green" }}
+          >
             <input
               type="text"
               value={idInput}
@@ -57,6 +77,7 @@ export default function Login({ setToken, setAttendanceId }: props) {
             />
 
             <button
+              disabled={idInput === "" ? true : false}
               onClick={() => {
                 setAttendanceId(idInput);
                 navigate("/qas");
@@ -65,7 +86,7 @@ export default function Login({ setToken, setAttendanceId }: props) {
               Proceed
             </button>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );

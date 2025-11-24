@@ -66,7 +66,7 @@ function App({ accessToken, attendanceId }: props) {
     });
 
     const data = await result.json();
-    if (data.response.result) {
+    if (data) {
       const details = data.response.result;
       console.log(data);
       setStudent({
