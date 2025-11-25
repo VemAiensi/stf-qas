@@ -278,3 +278,8 @@
     width: 35px;
   }
 }
+
+.invisible {
+  position: absolute;
+  opacity: 0;
+}

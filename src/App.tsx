@@ -24,12 +24,14 @@ type props = {
 
 function App({ accessToken, attendanceId }: props) {
   const [code, setCode] = useState<string>("");
+  const [manualInput, setManualInput] = useState<string>("");
   const [manual, setManual] = useState(true);
   const [student, setStudent] = useState<student | null>(null);
   const [loading, setLoading] = useState(false);
   const [firstLaunch, setFirstLaunch] = useState(true);
   const navigate = useNavigate();
 
+  const manualInputRef = useRef<HTMLInputElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
@@ -106,28 +108,36 @@ function App({ accessToken, attendanceId }: props) {
           <Wait />
         </div>
 
-        <form
-          onSubmit={async (e) => {
-            setManual(false);
-            e.preventDefault();
-            // alert(code);
-            await fetchDetails(code);
-            setCode("");
-          }}
-        >
-          <label htmlFor="code">ID:</label>
-          <input
-            ref={inputRef}
-            name="code"
-            autoFocus
-            type="text"
-            value={code}
-            onChange={(e) => {
-              setCode(e.target.value);
+        <div className="invisible">
+          <form
+            onSubmit={async (e) => {
+              setManual(false);
+              e.preventDefault();
+              // alert(code);
+              await fetchDetails(code);
+              setCode("");
             }}
-          />
-          <button type="submit">SUBMIT</button>
-        </form>
+          >
+            <label htmlFor="code">ID:</label>
+            <input
+              ref={inputRef}
+              name="code"
+              autoFocus
+              autoComplete="off"
+              onBlur={() => {
+                if (!manual) {
+                  if (inputRef.current) inputRef.current.focus();
+                }
+              }}
+              type="text"
+              value={code}
+              onChange={(e) => {
+                setCode(e.target.value);
+              }}
+            />
+            <button type="submit">SUBMIT</button>
+          </form>
+        </div>
 
         {/* <button
           onClick={() => {
@@ -149,6 +159,7 @@ function App({ accessToken, attendanceId }: props) {
             className="show-btn"
             type="button"
             onClick={async () => {
+              setManualInput("");
               if (manual) {
                 if (inputRef.current) {
                   inputRef.current.focus({ preventScroll: true });
@@ -160,8 +171,8 @@ function App({ accessToken, attendanceId }: props) {
                 setManual(!manual);
 
                 setTimeout(() => {
-                  if (inputRef.current) {
-                    inputRef.current.focus({ preventScroll: true });
+                  if (manualInputRef.current) {
+                    manualInputRef.current.focus({ preventScroll: true });
                   }
                 }, 400);
               }
@@ -173,23 +184,26 @@ function App({ accessToken, attendanceId }: props) {
 
         <form
           onSubmit={async (e) => {
+            if (inputRef.current) {
+              inputRef.current.focus({ preventScroll: true });
+            }
             setManual(false);
             e.preventDefault();
             // alert(code);
-            await fetchDetails(code);
-            setCode("");
+            await fetchDetails(manualInput);
+            setManualInput("");
           }}
         >
           <label htmlFor="code">ID:</label>
           <input
-            ref={inputRef}
+            ref={manualInputRef}
             name="code"
-            autoFocus
-            type="text"
-            value={code}
+            value={manualInput}
+            autoComplete="off"
             onChange={(e) => {
-              setCode(e.target.value);
+              setManualInput(e.target.value);
             }}
+            type="text"
           />
           <button type="submit">SUBMIT</button>
         </form>
