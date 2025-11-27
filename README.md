@@ -1,3 +1,3 @@
-# NEU - QAS
+# STF - QAS
 
-QR Code Attendance system for NEU Events
+QR Code Attendance system for STF/AEVM Events
